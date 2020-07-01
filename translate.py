@@ -1,7 +1,7 @@
 from googletrans import Translator
 import json
 
-words = ["lamp", "cup", "fridge", "microwave", "radiator", "blinds", "candle", "window", "beef", "spice"]       
+words = ["plug", "floor", "wall", "lampshade", "oven", "cupboard", "freezer", "porridge", "charger", "hallway"]       
 
 def make_translation(words, lang):
     translator = Translator()
@@ -15,7 +15,9 @@ def make_translation(words, lang):
 
 def add_to_history(dic, lang):    
     with open('{}.json'.format(lang), 'a') as file:
+        file.write('\n')
         file.write(json.dumps(dic))
+        
 
 def main():
     fr = make_translation(words, 'fr')
