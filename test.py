@@ -17,15 +17,22 @@ class Test:
         print(self.set_list)
 
     def pick_test(self):
-        self.test_num = input("Pick a number between 0 and {}".format(len(self.set_list))
-        return self.test_num
-        
+        self.test_num = int(input("Pick a number between 1 and {}: ".format(len(self.set_list))))
+        print(self.test_num)
+        if self.test_num > len(self.set_list):
+            print("Invalid number selected.")
+            self.pick_test()
+
+        return self.set_list[self.test_num-1]
+
+    def start(self):
+        self.get_dataset()
+        test = self.pick_test()
+        print(test)
 
 def main():
     fr_test = Test('fr')
-    fr_test.get_dataset()
-    #fr_test.show_all_datasets()
-
+    fr_test.start()
 
 if __name__ == '__main__':
     main()
