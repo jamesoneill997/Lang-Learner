@@ -5,6 +5,7 @@ class Test:
         self.lang = lang
         self.set_list = []
         self.test_num = 0
+        self.score = 0
     
     def get_dataset(self):
         with open('{}.json'.format(self.lang)) as json_file:
@@ -18,17 +19,35 @@ class Test:
 
     def pick_test(self):
         self.test_num = int(input("Pick a number between 1 and {}: ".format(len(self.set_list))))
-        print(self.test_num)
         if self.test_num > len(self.set_list):
             print("Invalid number selected.")
             self.pick_test()
 
         return self.set_list[self.test_num-1]
 
+    def make_test(self):
+        ds = self.pick_test()
+        for item in ds:
+            attempt = str(input("Comment dit en fran¢ais {}? \n".format(item))).lower().strip()
+            if attempt == ds[item].lower().strip():
+                print("Oui, c'est correct!")
+                self.score+=1
+            else:
+                print("Ce n'est pas correct, etudie un petit peu plus!")
+    
+    def results(self):
+        tot_questions = len(self.set_list[self.test_num-1])
+        tot_correct = self.score
+
+        return "Your result is: {}/{}".format(tot_correct, tot_questions)
+    
     def start(self):
         self.get_dataset()
-        test = self.pick_test()
-        print(test)
+        self.make_test()
+        print(self.results())
+    
+    
+
 
 def main():
     fr_test = Test('fr')
