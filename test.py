@@ -7,6 +7,7 @@ class Test:
         self.test_num = 0
         self.score = 0
     
+    #fetch dataset
     def get_dataset(self):
         with open('{}.json'.format(self.lang)) as json_file:
             for line in json_file:
@@ -14,9 +15,11 @@ class Test:
 
             return self.set_list
 
+    #show all current datasets
     def show_all_datasets(self):
         print(self.set_list)
 
+    #Pick a dataset
     def pick_test(self):
         self.test_num = int(input("Pick a number between 1 and {}: ".format(len(self.set_list))))
         if self.test_num > len(self.set_list):
@@ -33,7 +36,7 @@ class Test:
                 print("Oui, c'est correct!")
                 self.score+=1
             else:
-                print("Ce n'est pas correct, etudie un petit peu plus!")
+                print("Incorrect, study harder")
     
     def results(self):
         tot_questions = len(self.set_list[self.test_num-1])
