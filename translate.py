@@ -20,9 +20,13 @@ def add_to_history(dic, lang):
         
 
 def main():
-    fr = make_translation(words, 'fr')
-    es = make_translation(words, 'es')
 
+    try:
+        fr = make_translation(words, 'fr')
+        es = make_translation(words, 'es')
+
+    except:
+        print("Error translating words, please check your internet connection and try again.")
     add_to_history(fr, 'fr')
     add_to_history(es, 'es')
 
